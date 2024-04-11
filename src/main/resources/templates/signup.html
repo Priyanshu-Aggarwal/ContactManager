@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Home Page</title>
+
+    </head>
+
+    <body>
+
+        <section > 
+            <div class="container top-padding">
+                <div class="row">
+                    <div class=" col-md-8 offset-md-2">
+
+                        <div class="my-card ">
+                            <div  th:if="${session.message}" th:classappend="${session.message.type}"class="alert " role="alert">
+
+                                <h4 th:text="${session.message.content}" class="text-center"></h4>
+                                <th:block th:text="${#session.removeAttribute(message)}"></th:block>
+                            </div>
+                            
+                            <h1 th:text="${Error}" class="alert-danger text-center"></h1>
+
+                            <div class="container text-center">
+                                <img style="width: 50px;" src="" th:src="@{/img/registration.png}"  alt=""/>
+                            </div>
+
+                            <h1 class="text-center" >Signup here.</h1>
+
+                            <form action="" th:action="@{/do_register}" method="post" th:object="${user}">
+                            <!--<form action="" th:action="@{/do_register}" method="post" th:object="${user}">-->
+                                <!--input fields-->
+
+                                <!--name field-->
+                                <div class="form-group">
+                                    <label for="name_field" class="form-label">Your Name</label>
+                                    <input type="text" class="form-control " 
+                                           id="name_field" aria-describedby="emailHelp"
+                                           th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+                                           placeholder="Enter Your Name"
+                                           name="name"
+                                           th:value="${user.name}"
+                                           required>
+                                    
+                                    <div th:each="e:${#fields.errors('name')}" th:text="${e}" class="invalid-feedback"></div>
+                                  
+                                </div>
+                              
+
+
+                                <!--email field-->
+                                <div class="mb-3">
+                                    <label for="email_field" class="form-label">Your Email</label>
+                                    <input type="email" class="form-control" 
+                                           id="email_field" aria-describedby="emailHelp"   
+                                           placeholder="Enter Your Email"
+                                            th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+                                           name="email"
+                                           th:value="${user.email}"
+                                           required>
+                                           <div th:each="e:${#fields.errors('email')}" th:text="${e}" class="invalid-feedback"></div>
+                                </div>
+
+                             
+                                <!--<p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />-->
+                                <!--password field-->
+                                <div class="mb-3">
+                                    <label for="password_field" class="form-label">Your Password</label>
+                                    <input type="password" class="form-control"  
+                                           id="password_field" aria-describedby="emailHelp"  
+                                              th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+                                           placeholder="Enter Your password"
+                                           name="password"
+                                           required>
+                                        <div th:each="e:${#fields.errors('password')}" th:text="${e}" class="invalid-feedback"></div>
+                                </div>
+                             
+                                <!--about field-->
+                                <div class="form-group">
+                                    <textarea th:text="${user.about}" name="about" rows="7" placeholder="Enter About Yourself" class="form-control"
+                                              ></textarea>
+                                </div>
+                                <!--<p class="alert alert-danger" th:if="${#fields.hasErrors('about')}" th:errors="*{about}" />-->
+                                <!--terms and condition aggrement-->
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="aggrement" class="form-check-input" id="aggrement"/>
+                                    <label for="aggrement" data-bs-toggle="modal" data-bs-target="#exampleModal">Accept Terms and Conditions</label>
+                                </div>
+
+                                <div class="container text-center" style="padding-top: 10px;">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="reset" class="btn btn-warning">Reset</button>
+                                </div>
+
+
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+    The Intellectual Property disclosure will inform users that the contents, logo and other visual media you created is your property and is protected by copyright laws.
+A Termination clause will inform that users' accounts on your website and mobile app or users' access to your website and mobile (if users can't have an account with you) can be terminated in case of abuses or at your sole discretion.
+A Governing Law will inform users which laws govern the agreement. This should the country in which your company is headquartered or the country from which you operate your website and mobile app.
+A Links To Other Web Sites clause will inform users that you are not responsible for any third party websites that you link to. This kind of clause will generally inform users that they are responsible for reading and agreeing (or disagreeing) with the Terms and Conditions or Privacy Policies of these third parties.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+        </section>
+    </body>
+</html>

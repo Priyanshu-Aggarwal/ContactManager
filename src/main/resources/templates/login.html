@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html  lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <section>
+          
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+        <h2 style="font-weight: bold;">Login Here</h2>
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-danger ">
+        Bad Credentials!
+   </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        Logout Successfull.
+    </div>
+
+    <!-- Login Form -->
+    <form th:action="@{/signin}" method="post" action="#">
+      <input type="text" id="login" class="fadeIn second input-class" name="username" placeholder="Enter Username">
+      <input type="password" id="password" class="fadeIn third input-class" name="password" placeholder="Enter Password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+        </section>
+    </body>
+</html>

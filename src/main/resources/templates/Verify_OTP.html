@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Home Page</title>
+
+    </head>
+
+    <body>
+
+        <section> 
+
+            <div class="container text-center" style="margin-top:160px;">
+                <form th:action="@{/process-verify}" method="post">
+                    <h1>OTP Verification</h1>
+                    <!--printing the session message--> 
+                    <div  th:if="${session.message}" th:classappend="${session.message.type}"class="alert " role="alert">
+
+                        <h4 th:text="${session.message.content}" class="text-center"></h4>
+                        <th:block th:text="${#session.removeAttribute(message)}"></th:block>
+                    </div> 
+
+                    <input type="text" name="OTP" placeholder="Enter OTP" style="width:400px;"/>
+                    <div class="container text-center">
+                        <button type="submit" class="btn btn-outline-primary mt-2">Verify OTP</button>
+                    </div>
+                    </section>
+                </form>
+            </div>
+    </body>
+</html>
